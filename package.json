@@ -1,0 +1,38 @@
+{
+  "name": "tecnologia-templates-nodejs",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.18.x",
+    "cors": "^2.8.x",
+    "debug": "^3.1.x",
+    "express": "^4.16.x",
+    "find": "^0.2.x",
+    "http-errors": "^1.6.x",
+    "kue": "^0.11.x",
+    "morgan": "^1.9.x",
+    "mysql2": "^1.5.x",
+    "raven": "^2.6.x",
+    "sequelize": "^4.38.x",
+    "sequelize-cli": "^4.0.x"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.x",
+    "eslint": "^5.0.x",
+    "eslint-config-airbnb-base": "^13.0.x",
+    "eslint-plugin-import": "^2.13.x",
+    "jest": "^23.3.x",
+    "nodemon": "^1.17.x",
+    "sqlite3": "^4.0.x"
+  },
+  "scripts": {
+    "api:start": "node ./api.js",
+    "api:start:watch": "node ./node_modules/nodemon/bin/nodemon.js ./api.js",
+    "api:test": "cross-env NODE_ENV=test node ./node_modules/jest/bin/jest",
+    "api:test:watch": "cross-env NODE_ENV=test node ./node_modules/nodemon/bin/nodemon.js ./node_modules/jest/bin/jest",
+    "db:migrate": "node ./node_modules/sequelize-cli/lib/sequelize --config config/database.js db:migrate",
+    "db:rollback": "node ./node_modules/sequelize-cli/lib/sequelize --config config/database.js db:migrate:undo",
+    "worker:start": "node ./worker.js",
+    "worker:start:watch": "node ./node_modules/nodemon/bin/nodemon.js ./worker.js"
+  }
+}

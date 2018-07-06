@@ -1,0 +1,77 @@
+version: "2"
+
+networks:
+  default:
+    external:
+      name: main
+
+services:
+  api:
+    build:
+      context: ../
+      dockerfile: Dockerfile-api
+    container_name: api.puppet-master.servicos.corporativo
+    image: docker.grpcom.local/corporativo/servicos/puppet-master:development-api
+    restart: on-failure:4
+    environment:
+      - APP_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - DB_DATABASE=cor_ser_pupmas
+      - DB_HOST=mysql.web-base
+      - DB_PASSWORD=root
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DEBUG=api,application
+      - NODE_ENV=development
+      - REDIS_DATABASE=0
+      - REDIS_HOST=redis.web-base
+      - REDIS_PASSWORD=root
+      - REDIS_PORT=6379
+      - REDIS_PREFIX=cor-ser-pupmas:kue
+      - VIRTUAL_HOST=api.puppet-master.servicos.corporativo
+      - VIRTUAL_PORT=80
+    expose:
+      - "80"
+    external_links:
+      - nginx-proxy.web-base
+    volumes:
+      - ../:/application
+      - ../:/mnt/base
+      - /application/node_modules
+    working_dir: /application
+    entrypoint: yarn
+    command:
+      - run
+      - api:start:watch
+
+  worker:
+    build:
+      context: ../
+      dockerfile: Dockerfile-worker
+    container_name: worker.puppet-master.servicos.corporativo
+    image: docker.grpcom.local/corporativo/servicos/puppet-master:development-worker
+    restart: on-failure:4
+    environment:
+      - APP_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - DB_DATABASE=cor_ser_pupmas
+      - DB_HOST=mysql.web-base
+      - DB_PASSWORD=root
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DEBUG=worker,application
+      - NODE_ENV=development
+      - REDIS_DATABASE=0
+      - REDIS_HOST=redis.web-base
+      - REDIS_PASSWORD=root
+      - REDIS_PORT=6379
+      - REDIS_PREFIX=cor-ser-pupmas:kue
+    volumes:
+      - ../:/application
+      - ../:/mnt/base
+      - /application/node_modules
+    working_dir: /application
+    entrypoint: yarn
+    command:
+      - run
+      - worker:start:watch
