@@ -18,11 +18,11 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.x",
-    "eslint": "^5.0.x",
+    "eslint": "^5.1.x",
     "eslint-config-airbnb-base": "^13.0.x",
     "eslint-plugin-import": "^2.13.x",
-    "jest": "^23.3.x",
-    "nodemon": "^1.17.x",
+    "jest": "^23.4.x",
+    "nodemon": "^1.18.x",
     "sqlite3": "^4.0.x"
   },
   "scripts": {

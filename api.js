@@ -7,7 +7,8 @@ const logger = require('morgan')
 
 const { bootstrapApp } = require('./src/application')
 const { bootstrapDatabase } = require('./src/database')
-const { bootstrapDispatchers } = require('./src/workers')
+const { bootstrapDispatcher } = require('./src/workers')
+const { normalizeBooleanValue, normalizePortValue } = require('./helpers/normalizers')
 
 const debugApplication = debug('application')
 const debugServer = debug('server')
@@ -19,24 +20,6 @@ const createApp = (port) => {
 
   return app
 }
-
-const normalizePort = (val) => {
-  const port = parseInt(val, 10)
-
-  if (Number.isNaN(port)) {
-    return val
-  }
-
-  if (port >= 0) {
-    return port
-  }
-
-  return false
-}
-
-const normalizeSentryEnabled = sentryEnabled => (
-  sentryEnabled === true || sentryEnabled === 'true'
-)
 
 const onError = port => (
   (err) => {
@@ -86,12 +69,12 @@ const errorHandler = () => (
 )
 
 const initializeApi = async () => {
-  const port = normalizePort(process.env.PORT || '80')
-  const sentryEnabled = normalizeSentryEnabled(process.env.SENTRY_ENABLED)
+  const port = normalizePortValue(process.env.PORT || '80')
+  const sentryEnabled = normalizeBooleanValue(process.env.SENTRY_ENABLED)
 
   bootstrapDatabase()
 
-  bootstrapDispatchers()
+  bootstrapDispatcher()
 
   let app = createApp(port)
 
@@ -121,7 +104,7 @@ const initializeApi = async () => {
   server.on('listening', onListening(server))
 }
 
-if (normalizeSentryEnabled(process.env.SENTRY_ENABLED)) {
+if (normalizeBooleanValue(process.env.SENTRY_ENABLED)) {
   Raven.config(
     process.env.SENTRY_DSN,
     {

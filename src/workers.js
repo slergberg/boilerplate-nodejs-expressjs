@@ -1,12 +1,12 @@
-const cluster = require('cluster')
+const Raven = require('raven')
 const find = require('find')
 const kue = require('kue')
-const os = require('os')
 const path = require('path')
 
 const queue = require('../config/queue')
+const { normalizeBooleanValue } = require('../helpers/normalizers')
 
-const dispatchers = {}
+const dispatcher = {}
 const workers = {}
 
 const WORKER_FILE_EXTENSION = '.js'
@@ -15,14 +15,6 @@ const WORKER_FILE_SUFFIX = 'Worker'
 const getWorkerFiles = () => (
   find.fileSync(/Worker\.js$/, './src', [])
 )
-
-const bootstrapJobCleaner = () => {
-  queue.on('job complete', (id) => {
-    kue.Job.get(id, (err, job) => {
-      job.remove()
-    })
-  })
-}
 
 const bootstrapJobErrorHandler = ({ onError, onFailed, onFailedAttempt }) => {
   queue.on('error', onError)
@@ -39,24 +31,33 @@ const bootstrapJobQueueShutdownHandler = ({ onShutdown }) => {
   })
 }
 
-const bootstrapDispatchers = async () => {
+const bootstrapJobUI = (options) => {
+  if (options.initializeUI) {
+    kue.app.listen(options.uiPort)
+  }
+}
+
+const bootstrapDispatcher = async () => {
   const dispatcherFiles = getWorkerFiles()
 
-  dispatcherFiles.reduce((previousValue, workerFile) => {
+  dispatcherFiles.forEach((workerFile) => {
     const workerFileBasename = path.basename(workerFile)
     const workerName = workerFileBasename.slice(
       0,
       workerFileBasename.length - WORKER_FILE_SUFFIX.length - WORKER_FILE_EXTENSION.length,
     )
 
-    dispatchers[workerName] = (payload, callback) => {
-      queue.create(workerName, payload).save(callback)
+    dispatcher[workerName] = (payload, callback) => {
+      queue.create(workerName, payload)
+        .attempts(4)
+        .backoff({ type: 'exponential' })
+        .removeOnComplete(true)
+        .ttl(payload.ttl || 4 * 60 * 1000)
+        .save(callback)
     }
+  })
 
-    return dispatchers
-  }, dispatchers)
-
-  return dispatchers
+  return dispatcher
 }
 
 const bootstrapWorker = async () => {
@@ -69,13 +70,25 @@ const bootstrapWorker = async () => {
       workerFileBasename.length - WORKER_FILE_SUFFIX.length - WORKER_FILE_EXTENSION.length,
     )
 
-    const workerProcess = queue.process(workerName, 10, (job, done) => {
+    const workerProcess = queue.process(workerName, 8, async (job, done) => {
       // eslint-disable-next-line global-require, import/no-dynamic-require
       const worker = require(require.resolve(path.join(__dirname, '..', workerFile)))
 
       const { type, data } = job
 
-      worker({ type, data }, done)
+      try {
+        const jobResult = await worker(type, data)
+
+        done(null, jobResult)
+      } catch (err) {
+        done(err)
+
+        if (normalizeBooleanValue(process.env.SENTRY_ENABLED)) {
+          Raven.captureException(err)
+        }
+
+        throw err
+      }
     })
 
     workers[workerName] = workerProcess
@@ -87,22 +100,16 @@ const bootstrapWorker = async () => {
 }
 
 const bootstrapWorkers = async (options) => {
-  if (cluster.isMaster) {
-    bootstrapJobCleaner()
-    bootstrapJobErrorHandler(options)
-    bootstrapJobQueueShutdownHandler(options)
+  bootstrapJobErrorHandler(options)
+  bootstrapJobQueueShutdownHandler(options)
+  bootstrapJobUI(options)
 
-    for (let i = 0; i < os.cpus().length; i += 1) {
-      cluster.fork()
-    }
-  } else {
-    bootstrapWorker()
-  }
+  bootstrapWorker()
 }
 
 module.exports = {
-  bootstrapDispatchers,
+  bootstrapDispatcher,
   bootstrapWorkers,
-  dispatchers,
+  dispatcher,
   workers,
 }

@@ -10,13 +10,13 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile-api
-    container_name: api.puppet-master.servicos.corporativo
-    image: docker.grpcom.local/corporativo/servicos/puppet-master:development-api
+    container_name: api.nodejs.templates.tecnologia
+    image: docker.grpcom.local/tecnologia/templates/nodejs:development-api
     restart: on-failure:4
     environment:
       - APP_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      - DB_DATABASE=cor_ser_pupmas
+      - DB_DATABASE=tec_tem_nod
       - DB_HOST=mysql.web-base
       - DB_PASSWORD=root
       - DB_PORT=3306
@@ -27,8 +27,8 @@ services:
       - REDIS_HOST=redis.web-base
       - REDIS_PASSWORD=root
       - REDIS_PORT=6379
-      - REDIS_PREFIX=cor-ser-pupmas:kue
-      - VIRTUAL_HOST=api.puppet-master.servicos.corporativo
+      - REDIS_PREFIX=tec-tem-nod:kue
+      - VIRTUAL_HOST=api.nodejs.templates.tecnologia
       - VIRTUAL_PORT=80
     expose:
       - "80"
@@ -48,24 +48,29 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile-worker
-    container_name: worker.puppet-master.servicos.corporativo
-    image: docker.grpcom.local/corporativo/servicos/puppet-master:development-worker
+    container_name: worker.nodejs.templates.tecnologia
+    image: docker.grpcom.local/tecnologia/templates/nodejs:development-worker
     restart: on-failure:4
     environment:
       - APP_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      - DB_DATABASE=cor_ser_pupmas
+      - DB_DATABASE=tec_tem_nod
       - DB_HOST=mysql.web-base
       - DB_PASSWORD=root
       - DB_PORT=3306
       - DB_USERNAME=root
       - DEBUG=worker,application
+      - KUE_UI_ENABLED=true
       - NODE_ENV=development
       - REDIS_DATABASE=0
       - REDIS_HOST=redis.web-base
       - REDIS_PASSWORD=root
       - REDIS_PORT=6379
-      - REDIS_PREFIX=cor-ser-pupmas:kue
+      - REDIS_PREFIX=tec-tem-nod:kue
+      - VIRTUAL_HOST=worker.nodejs.templates.tecnologia
+      - VIRTUAL_PORT=3000
+    expose:
+      - "3000"
     volumes:
       - ../:/application
       - ../:/mnt/base

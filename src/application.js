@@ -5,7 +5,7 @@ const path = require('path')
 
 const packageDefinition = require('../package.json')
 
-const { ApiError } = require('./helpers')
+const { ApiError } = require('../helpers/errors')
 
 const mainRouter = () => {
   const router = express.Router()
