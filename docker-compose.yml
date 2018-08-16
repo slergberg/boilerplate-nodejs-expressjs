@@ -8,10 +8,10 @@ networks:
 services:
   api:
     build:
-      context: ../
+      context: .
       dockerfile: Dockerfile-api
-    container_name: api.nodejs.templates.tecnologia
-    image: docker.grpcom.local/tecnologia/templates/nodejs:development-api
+    container_name: api.expressjs.templates.tecnologia
+    image: docker.grpcom.local/tecnologia/templates/expressjs:development-api
     restart: on-failure:4
     environment:
       - APP_ENV=development
@@ -27,16 +27,16 @@ services:
       - REDIS_HOST=redis.web-base
       - REDIS_PASSWORD=root
       - REDIS_PORT=6379
-      - REDIS_PREFIX=tec-tem-nod:kue
-      - VIRTUAL_HOST=api.nodejs.templates.tecnologia
+      - REDIS_PREFIX=tec-tem-exp:kue
+      - VIRTUAL_HOST=api.expressjs.templates.tecnologia
       - VIRTUAL_PORT=80
     expose:
       - "80"
     external_links:
       - nginx-proxy.web-base
     volumes:
-      - ../:/application
-      - ../:/mnt/base
+      - .:/application
+      - .:/mnt/base
       - /application/node_modules
     working_dir: /application
     entrypoint: yarn
@@ -46,10 +46,10 @@ services:
 
   worker:
     build:
-      context: ../
+      context: .
       dockerfile: Dockerfile-worker
-    container_name: worker.nodejs.templates.tecnologia
-    image: docker.grpcom.local/tecnologia/templates/nodejs:development-worker
+    container_name: worker.expressjs.templates.tecnologia
+    image: docker.grpcom.local/tecnologia/templates/expressjs:development-worker
     restart: on-failure:4
     environment:
       - APP_ENV=development
@@ -66,14 +66,14 @@ services:
       - REDIS_HOST=redis.web-base
       - REDIS_PASSWORD=root
       - REDIS_PORT=6379
-      - REDIS_PREFIX=tec-tem-nod:kue
-      - VIRTUAL_HOST=worker.nodejs.templates.tecnologia
+      - REDIS_PREFIX=tec-tem-exp:kue
+      - VIRTUAL_HOST=worker.expressjs.templates.tecnologia
       - VIRTUAL_PORT=3000
     expose:
       - "3000"
     volumes:
-      - ../:/application
-      - ../:/mnt/base
+      - .:/application
+      - .:/mnt/base
       - /application/node_modules
     working_dir: /application
     entrypoint: yarn

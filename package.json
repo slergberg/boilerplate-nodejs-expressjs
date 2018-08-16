@@ -1,5 +1,5 @@
 {
-  "name": "tecnologia-templates-nodejs",
+  "name": "tecnologia-templates-expressjs",
   "private": true,
   "version": "1.0.0",
   "dependencies": {
@@ -19,19 +19,19 @@
   "devDependencies": {
     "cross-env": "^5.2.x",
     "eslint": "^5.3.x",
-    "eslint-config-airbnb-base": "^13.0.x",
-    "eslint-plugin-import": "^2.13.x",
-    "jest": "^23.4.x",
+    "eslint-config-airbnb-base": "^13.1.x",
+    "eslint-plugin-import": "^2.14.x",
+    "jest": "^23.5.x",
     "nodemon": "^1.18.x",
     "sqlite3": "^4.0.x"
   },
   "scripts": {
     "api:start": "node ./api.js",
     "api:start:watch": "node ./node_modules/nodemon/bin/nodemon.js ./api.js",
-    "api:test": "cross-env NODE_ENV=test node ./node_modules/jest/bin/jest",
-    "api:test:watch": "cross-env NODE_ENV=test node ./node_modules/nodemon/bin/nodemon.js ./node_modules/jest/bin/jest",
     "db:migrate": "node ./node_modules/sequelize-cli/lib/sequelize --config config/database.js db:migrate",
     "db:rollback": "node ./node_modules/sequelize-cli/lib/sequelize --config config/database.js db:migrate:undo",
+    "test": "cross-env NODE_ENV=test node ./node_modules/jest/bin/jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test node ./node_modules/nodemon/bin/nodemon.js ./node_modules/jest/bin/jest --coverage",
     "worker:start": "node ./worker.js",
     "worker:start:watch": "node ./node_modules/nodemon/bin/nodemon.js ./worker.js"
   }
