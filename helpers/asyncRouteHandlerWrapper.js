@@ -1,7 +1,5 @@
-const asyncRouteHandlerWrapper = fn => (
-  (req, res, next) => {
-    Promise.resolve(fn(req, res, next)).catch(next)
-  }
-)
+const asyncRouteHandlerWrapper = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next)
+}
 
 module.exports = asyncRouteHandlerWrapper

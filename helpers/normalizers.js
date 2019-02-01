@@ -1,6 +1,4 @@
-const normalizeBooleanValue = val => (
-  val === true || val === 'true'
-)
+const normalizeBooleanValue = (val) => val === true || val === 'true'
 
 const normalizePortValue = (val) => {
   const port = parseInt(val, 10)

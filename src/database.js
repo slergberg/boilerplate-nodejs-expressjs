@@ -4,23 +4,11 @@ const path = require('path')
 
 const databaseConfig = require('../config/database')
 
-const {
-  database,
-  username,
-  password,
-  ...options
-} = databaseConfig
+const { database, username, password, ...options } = databaseConfig
 
-const sequelize = new Sequelize(
-  database,
-  username,
-  password,
-  options,
-)
+const sequelize = new Sequelize(database, username, password, options)
 
-const getModelFiles = () => (
-  find.fileSync(/Model\.js$/, './src', [])
-)
+const getModelFiles = () => find.fileSync(/Model\.js$/, './src', [])
 
 const modelsFiles = getModelFiles()
 

@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - '10'
+  - '8'
+
+install:
+  - yarn global add coveralls
+  - yarn install
+
+script:
+  - yarn run test:coverage
+
+after_success:
+  - cat ./coverage/lcov.info | coveralls

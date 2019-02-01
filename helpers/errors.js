@@ -3,16 +3,16 @@ const debug = require('debug')('api')
 const ApiError = require('./errors/ApiError')
 const WorkerError = require('./errors/WorkerError')
 
-const logError = (error) => {
-  if (error instanceof ApiError) {
+const logError = (err) => {
+  if (err instanceof ApiError) {
     return
   }
 
-  if (error instanceof WorkerError) {
+  if (err instanceof WorkerError) {
     return
   }
 
-  debug(error)
+  debug(err)
 }
 
 module.exports = {

@@ -1,13 +1,11 @@
-const kue = require('kue')
-
-const queue = kue.createQueue({
+const queueConfig = {
   prefix: process.env.REDIS_PREFIX,
   redis: {
-    auth: process.env.REDIS_PASSWORD,
     db: process.env.REDIS_DATABASE,
     host: process.env.REDIS_HOST,
+    password: process.env.REDIS_PASSWORD,
     port: process.env.REDIS_PORT,
   },
-})
+}
 
-module.exports = queue
+module.exports = queueConfig

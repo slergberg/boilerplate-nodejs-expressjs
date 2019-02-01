@@ -3,8 +3,6 @@ module.exports = {
   collectCoverageFrom: [
     '{config,helpers,src}/**/*.{js}',
     '*.{js}',
-  ],
-  coveragePathIgnorePatterns: [
-    'jest.config.js',
+    '!*.config.{js}',
   ],
 }

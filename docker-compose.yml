@@ -1,4 +1,4 @@
-version: "2"
+version: '3'
 
 networks:
   default:
@@ -9,53 +9,53 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile-api
-    container_name: api.expressjs.templates.tecnologia
-    image: docker.grpcom.local/tecnologia/templates/expressjs:development-api
+      dockerfile: Dockerfile
+    container_name: api.expressjs.nodejs.templates.slergberg
+    image: slergberg/templates/nodejs/expressjs:api
     restart: on-failure:4
     environment:
       - APP_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - DB_DATABASE=tec_tem_nod
-      - DB_HOST=mysql.web-base
+      - DB_HOST=mysql.web-dev-svc
       - DB_PASSWORD=root
       - DB_PORT=3306
       - DB_USERNAME=root
       - DEBUG=api,application
       - NODE_ENV=development
       - REDIS_DATABASE=0
-      - REDIS_HOST=redis.web-base
+      - REDIS_HOST=redis.web-dev-svc
       - REDIS_PASSWORD=root
       - REDIS_PORT=6379
-      - REDIS_PREFIX=tec-tem-exp:kue
-      - VIRTUAL_HOST=api.expressjs.templates.tecnologia
-      - VIRTUAL_PORT=80
+      - REDIS_PREFIX=sler-tem-nod-exp:wor
+      - VIRTUAL_HOST=api.expressjs.nodejs.templates.slergberg
+      - VIRTUAL_PORT=3000
     expose:
-      - "80"
+      - '3000'
     external_links:
-      - nginx-proxy.web-base
+      - nginx-proxy.web-dev-svc
     volumes:
       - .:/application
       - .:/mnt/base
       - /application/node_modules
     working_dir: /application
-    entrypoint: yarn
     command:
+      - yarn
       - run
       - api:start:watch
 
   worker:
     build:
       context: .
-      dockerfile: Dockerfile-worker
-    container_name: worker.expressjs.templates.tecnologia
-    image: docker.grpcom.local/tecnologia/templates/expressjs:development-worker
+      dockerfile: Dockerfile
+    container_name: worker.expressjs.nodejs.templates.slergberg
+    image: slergberg/templates/nodejs/expressjs:worker
     restart: on-failure:4
     environment:
       - APP_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - DB_DATABASE=tec_tem_nod
-      - DB_HOST=mysql.web-base
+      - DB_HOST=mysql.web-dev-svc
       - DB_PASSWORD=root
       - DB_PORT=3306
       - DB_USERNAME=root
@@ -63,20 +63,61 @@ services:
       - KUE_UI_ENABLED=true
       - NODE_ENV=development
       - REDIS_DATABASE=0
-      - REDIS_HOST=redis.web-base
+      - REDIS_HOST=redis.web-dev-svc
       - REDIS_PASSWORD=root
       - REDIS_PORT=6379
-      - REDIS_PREFIX=tec-tem-exp:kue
-      - VIRTUAL_HOST=worker.expressjs.templates.tecnologia
-      - VIRTUAL_PORT=3000
+      - REDIS_PREFIX=sler-tem-nod-exp:wor
+      - VIRTUAL_HOST=worker.expressjs.nodejs.templates.slergberg
+      - VIRTUAL_PORT=4567
     expose:
-      - "3000"
+      - '4567'
+    external_links:
+      - nginx-proxy.web-dev-svc
     volumes:
       - .:/application
       - .:/mnt/base
       - /application/node_modules
     working_dir: /application
-    entrypoint: yarn
     command:
+      - yarn
       - run
       - worker:start:watch
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: test.expressjs.nodejs.templates.slergberg
+    image: slergberg/templates/nodejs/expressjs:test
+    restart: on-failure:4
+    environment:
+      - APP_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - DB_DATABASE=tec_tem_nod
+      - DB_HOST=mysql.web-dev-svc
+      - DB_PASSWORD=root
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DEBUG=test,application
+      - KUE_UI_ENABLED=true
+      - NODE_ENV=development
+      - REDIS_DATABASE=0
+      - REDIS_HOST=redis.web-dev-svc
+      - REDIS_PASSWORD=root
+      - REDIS_PORT=6379
+      - REDIS_PREFIX=sler-tem-nod-exp:wor
+      - VIRTUAL_HOST=test.expressjs.nodejs.templates.slergberg
+      - VIRTUAL_PORT=4567
+    expose:
+      - '4567'
+    external_links:
+      - nginx-proxy.web-dev-svc
+    volumes:
+      - .:/application
+      - .:/mnt/base
+      - /application/node_modules
+    working_dir: /application
+    command:
+      - yarn
+      - run
+      - test:watch

@@ -1,38 +1,67 @@
 {
-  "name": "tecnologia-templates-expressjs",
-  "private": true,
+  "name": "slergberg-boilerplate-nodejs-expressjs",
+  "description": "Slergberg boilerplate for Node.js Express.js application",
   "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [
+    "slergberg",
+    "boilerplate",
+    "serverless",
+    "nodejs",
+    "expressjs",
+    "js"
+  ],
+  "author": {
+    "name": "Rodrigo Scomação do Nascimento",
+    "email": "me@rodrigosn.com",
+    "url": "https://rodrigosn.com/"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/slergberg/boilerplate-nodejs-expressjs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slergberg/boilerplate-nodejs-expressjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slergberg/boilerplate-nodejs-expressjs/issues"
+  },
   "dependencies": {
     "body-parser": "^1.18.x",
+    "bull": "^3.6.x",
+    "bull-arena": "^2.5.x",
     "cors": "^2.8.x",
-    "debug": "^3.1.x",
+    "debug": "^4.1.x",
     "express": "^4.16.x",
     "find": "^0.2.x",
     "http-errors": "^1.7.x",
-    "kue": "^0.11.x",
     "morgan": "^1.9.x",
     "mysql2": "^1.6.x",
     "raven": "^2.6.x",
-    "sequelize": "^4.38.x",
-    "sequelize-cli": "^4.0.x"
+    "sequelize": "^4.42.x",
+    "sequelize-cli": "^5.4.x"
   },
   "devDependencies": {
-    "cross-env": "^5.2.x",
-    "eslint": "^5.3.x",
+    "eslint": "^5.12.x",
     "eslint-config-airbnb-base": "^13.1.x",
-    "eslint-plugin-import": "^2.14.x",
-    "jest": "^23.5.x",
+    "eslint-plugin-import": "^2.16.x",
+    "husky": "^1.3.x",
+    "jest": "^24.0.x",
     "nodemon": "^1.18.x",
+    "prettier": "^1.16.x",
+    "pretty-quick": "^1.10.x",
     "sqlite3": "^4.0.x"
   },
   "scripts": {
     "api:start": "node ./api.js",
-    "api:start:watch": "node ./node_modules/nodemon/bin/nodemon.js ./api.js",
+    "api:start:debug": "node ./node_modules/nodemon/bin/nodemon --inspect=0.0.0.0:9229 --exec yarn run start",
+    "api:start:watch": "node ./node_modules/nodemon/bin/nodemon --exec yarn run start",
     "db:migrate": "node ./node_modules/sequelize-cli/lib/sequelize --config config/database.js db:migrate",
     "db:rollback": "node ./node_modules/sequelize-cli/lib/sequelize --config config/database.js db:migrate:undo",
-    "test": "cross-env NODE_ENV=test node ./node_modules/jest/bin/jest --coverage",
-    "test:watch": "cross-env NODE_ENV=test node ./node_modules/nodemon/bin/nodemon.js ./node_modules/jest/bin/jest --coverage",
+    "test": "node ./node_modules/jest/bin/jest",
+    "test:coverage": "node ./node_modules/jest/bin/jest --coverage",
+    "test:watch": "node ./node_modules/nodemon/bin/nodemon --exec yarn run test:coverage",
     "worker:start": "node ./worker.js",
-    "worker:start:watch": "node ./node_modules/nodemon/bin/nodemon.js ./worker.js"
+    "worker:start:debug": "node ./node_modules/nodemon/bin/nodemon --inspect=0.0.0.0:9229 --exec yarn run start",
+    "worker:start:watch": "node ./node_modules/nodemon/bin/nodemon --exec yarn run start"
   }
 }
