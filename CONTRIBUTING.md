@@ -1,6 +1,6 @@
 # Contributing to a boilerplate
 
-[![Build Status](https://travis-ci.org/slergberg/boilerplate-nodejs-expressjs.svg?branch=master)](https://travis-ci.org/slergberg/boilerplate-nodejs-expressjs)
+[![Build Status](https://travis-ci.com/slergberg/boilerplate-nodejs-expressjs.svg?branch=master)](https://travis-ci.com/slergberg/boilerplate-nodejs-expressjs)
 [![License](https://img.shields.io/github/license/slergberg/boilerplate-nodejs-expressjs.svg)](https://packagist.org/packages/slergberg/boilerplate-nodejs-expressjs)
 
 This template is under active development right now. You're encouraged to submit
