@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.x",
-    "bull": "^3.6.x",
+    "bull": "^3.7.x",
     "bull-arena": "^2.5.x",
     "cors": "^2.8.x",
     "debug": "^4.1.x",
