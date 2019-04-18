@@ -32,7 +32,7 @@
     "cors": "^2.8.x",
     "debug": "^4.1.x",
     "express": "^4.16.x",
-    "find": "^0.2.x",
+    "find": "^0.3.x",
     "http-errors": "^1.7.x",
     "morgan": "^1.9.x",
     "mysql2": "^1.6.x",
