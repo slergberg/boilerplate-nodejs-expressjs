@@ -5663,9 +5663,9 @@ sprintf-js@~1.0.2:
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
 sqlite3@^4.0.x:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-4.0.7.tgz#d3ba009de040198199dfbe6549126aa2a17b26d5"
-  integrity sha512-TGEeSBB8O48bEu8KUUMqzeB22WrfTxzhIf0lFm8wLTo3a6yJBonF2sPKMYrYtOne1F1t9AHAEn+DTISq8WebQg==
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-4.0.8.tgz#81ee60d54befaa52f5421fe6337050bd43d4bb95"
+  integrity sha512-kgwHu4j10KhpCHtx//dejd/tVQot7jc3sw+Sn0vMuKOw0X00Ckyg9VceKgzPyGmmz+zEoYue9tOLriWTvYy0ww==
   dependencies:
     nan "^2.12.1"
     node-pre-gyp "^0.11.0"
