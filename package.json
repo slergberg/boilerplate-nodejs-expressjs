@@ -48,7 +48,7 @@
     "jest": "^24.8.x",
     "nodemon": "^1.19.x",
     "prettier": "^1.17.x",
-    "pretty-quick": "^1.10.x",
+    "pretty-quick": "^1.11.x",
     "sqlite3": "^4.0.x"
   },
   "scripts": {
