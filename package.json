@@ -44,7 +44,7 @@
     "eslint": "^5.16.x",
     "eslint-config-airbnb-base": "^13.1.x",
     "eslint-plugin-import": "^2.18.x",
-    "husky": "^2.5.x",
+    "husky": "^2.6.x",
     "jest": "^24.8.x",
     "nodemon": "^1.19.x",
     "prettier": "^1.18.x",
