@@ -37,7 +37,7 @@
     "morgan": "^1.9.x",
     "mysql2": "^1.6.x",
     "raven": "^2.6.x",
-    "sequelize": "^5.13.x",
+    "sequelize": "^5.14.x",
     "sequelize-cli": "^5.5.x"
   },
   "devDependencies": {
