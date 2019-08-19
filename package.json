@@ -49,7 +49,7 @@
     "nodemon": "^1.19.x",
     "prettier": "^1.18.x",
     "pretty-quick": "^1.11.x",
-    "sqlite3": "^4.0.x"
+    "sqlite3": "^4.1.x"
   },
   "scripts": {
     "api:start": "node ./api.js",
