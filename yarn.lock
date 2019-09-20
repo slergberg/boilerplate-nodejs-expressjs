@@ -4289,14 +4289,7 @@ mobius1-selectr@2.4.2:
   resolved "https://registry.yarnpkg.com/mobius1-selectr/-/mobius1-selectr-2.4.2.tgz#b8a619c8a0ed6234590e5e5a9e979e15d9b4b89a"
   integrity sha512-yfy1sLxIDlgZjhThuG6gBsI4L2pJHRNaHth/hwPN5ESH5n2qkhfay/OnVmwhhDVYeui54NKIWeu6zWcobVcYtQ==
 
-moment-timezone@^0.5.21:
-  version "0.5.23"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.23.tgz#7cbb00db2c14c71b19303cb47b0fb0a6d8651463"
-  integrity sha512-WHFH85DkCfiNMDX5D3X7hpNH3/PUhjTGcD0U1SgfBGZxJ3qUmJh5FdvaFjcClxOvB3rzdfj4oRffbI38jEnC1w==
-  dependencies:
-    moment ">= 2.9.0"
-
-moment-timezone@^0.5.25:
+moment-timezone@^0.5.21, moment-timezone@^0.5.25:
   version "0.5.26"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.26.tgz#c0267ca09ae84631aa3dc33f65bedbe6e8e0d772"
   integrity sha512-sFP4cgEKTCymBBKgoxZjYzlSovC20Y6J7y3nanDc5RoBIXKlZhoYwBoZGe3flwU6A372AcRwScH8KiwV6zjy1g==
@@ -5575,10 +5568,10 @@ sequelize-pool@^2.3.0:
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-2.3.0.tgz#64f1fe8744228172c474f530604b6133be64993d"
   integrity sha512-Ibz08vnXvkZ8LJTiUOxRcj1Ckdn7qafNZ2t59jYHMX1VIebTAOYefWdRYFt6z6+hy52WGthAHAoLc9hvk3onqA==
 
-sequelize@^5.18.x:
-  version "5.18.4"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-5.18.4.tgz#1e2c7eabe4c554fa257a0115fad39f271bd56150"
-  integrity sha512-bBmJqpO1H8Z7L0xzITqVo5KHXFI7GmKfGl/5SIPDKsuUMbuZT98s+gyGeaLXpOWGH1ZUO79hvJ8z74vNcxBWHg==
+sequelize@^5.19.x:
+  version "5.19.0"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-5.19.0.tgz#96d610cf3afc499fb1ba27c77a9eb3c6e7060812"
+  integrity sha512-1LsPa++R37USE3LWYKkw//kSAKORXogItoSrPahOTVEuCj+v+/BxGX+49M2d9oYtkxvwUnHgCFMx2Kzku9RhSg==
   dependencies:
     bluebird "^3.5.0"
     cls-bluebird "^2.1.0"
