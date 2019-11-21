@@ -46,7 +46,7 @@
     "eslint-plugin-import": "^2.18.x",
     "husky": "^3.1.x",
     "jest": "^24.9.x",
-    "nodemon": "^1.19.x",
+    "nodemon": "^2.0.x",
     "prettier": "^1.19.x",
     "pretty-quick": "^2.0.x",
     "sqlite3": "^4.1.x"
