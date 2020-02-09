@@ -1150,24 +1150,24 @@ builtin-modules@^1.0.0:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
-bull-arena@^2.6.x:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/bull-arena/-/bull-arena-2.6.4.tgz#ca230b530048ea68983133db70ef889effcb64ce"
-  integrity sha512-yxvqKQ6+UPewF+Srwu9Dz0WOQ+9DxZfGsr7v1Aw8y1r6RnJoEcuTiHVPMjECeL4SnG0d0Q8iLsVNT4qCPHMKlw==
+bull-arena@^2.7.x:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/bull-arena/-/bull-arena-2.7.1.tgz#782dbcb290a8a9b14931ecbff2505fe03d70874a"
+  integrity sha512-lyVZsZQHrlqOqqyScZfqXsvbHHp6jXmxNsHEiJ2ML9V4AmHJ8/0Pu/mki4UH5bnVC99i9ceBbgELCx6DimpUMA==
   dependencies:
     bee-queue "^1.0.0"
     body-parser "^1.17.2"
-    bull "^3.3.7"
+    bull "^3.12.1"
     express "^4.15.2"
     express-handlebars "^3.0.0"
-    handlebars "^4.0.14"
+    handlebars "^4.3.0"
     handlebars-helpers "^0.10.0"
     jsoneditor "^5.9.6"
-    lodash "^4.17.4"
+    lodash "^4.17.15"
     nodemon "^1.18.7"
     tablesort "^5.0.1"
 
-bull@^3.12.x, bull@^3.3.7:
+bull@^3.12.1, bull@^3.12.x:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/bull/-/bull-3.12.1.tgz#ced62d0afca81c9264b44f1b6f39243df5d2e73f"
   integrity sha512-X3bSP7gTqPXLYVSyUtQuTOqZuU0GwVbV304Et84Z8bxYP60R1VD3FUOLsESVRA9LIUEOWVH3hE8MFqlszmO0Gw==
@@ -2803,10 +2803,10 @@ handlebars-utils@^1.0.2, handlebars-utils@^1.0.4, handlebars-utils@^1.0.6:
     kind-of "^6.0.0"
     typeof-article "^0.1.1"
 
-handlebars@^4.0.11, handlebars@^4.0.14, handlebars@^4.0.5, handlebars@^4.1.2:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.5.3.tgz#5cf75bd8714f7605713511a56be7c349becb0482"
-  integrity sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==
+handlebars@^4.0.11, handlebars@^4.0.5, handlebars@^4.1.2, handlebars@^4.3.0:
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.3.tgz#8ece2797826886cf8082d1726ff21d2a022550ee"
+  integrity sha512-SRGwSYuNfx8DwHD/6InAPzD6RgeruWLT+B8e8a7gGs8FWgHzlExpTFMEq2IA6QpAfOClpKHy6+8IqTjeBCu6Kg==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
@@ -4200,7 +4200,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "^3.0.0"
 
-lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5:
+lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
