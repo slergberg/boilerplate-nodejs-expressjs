@@ -34,7 +34,7 @@
     "express": "^4.17.x",
     "find": "^0.3.x",
     "http-errors": "^1.7.x",
-    "morgan": "^1.9.x",
+    "morgan": "^1.10.x",
     "mysql2": "^2.1.x",
     "raven": "^2.6.x",
     "sequelize": "^5.21.x",
